@@ -1,8 +1,11 @@
-@import "tailwindcss";
+@import "tailwindcss/preflight";
+@tailwind utilities;
+
+@import "flowbite";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: rgb(191, 177, 193);
+  --foreground: rgb(7, 17, 8);
 }
 
 @theme inline {
@@ -14,7 +17,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: rgb(191, 177, 193);
     --foreground: #ededed;
   }
 }

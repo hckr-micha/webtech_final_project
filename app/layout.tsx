@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import "flowbite/dist/flowbite.css";
+import "flowbite";
+import Navbar from "./components/Navbar";
+
+// Removed ReactQueryProvider since react-query is uninstalled
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,9 +30,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-lightGray text-darkGreen min-h-screen`}
       >
-        {children}
+        <Navbar />
+        <main className="max-w-7xl mx-auto px-6 py-8">
+          {children}
+        </main>
       </body>
     </html>
   );
