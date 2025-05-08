@@ -83,7 +83,7 @@ export default function Dashboard() {
 
   return (
     <div className="p-6 max-w-5xl mx-auto space-y-8 bg-paleBlue rounded-lg shadow-lg">
-      <h1 className="text-5xl font-bold mb-8 text-center text-darkGreen">Dashboard</h1>
+      <h1 className="text-5xl font-bold mb-8 text-center text-darkGreen p-5">Dashboard</h1>
       <div className="bg-white shadow-lg rounded-lg p-6">
         <Chart options={chartOptions} series={chartSeries} type="bar" height={350} />
       </div>

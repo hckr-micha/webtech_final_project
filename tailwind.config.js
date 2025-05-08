@@ -10,12 +10,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        darkGreen: 'rgb(7, 17, 8)',
-        slateGray: 'rgb(54, 70, 82)',
-        lavenderGray: 'rgb(191, 177, 193)',
-        lightGray: 'rgb(181, 190, 198)',
-        paleBlue: 'rgb(199, 219, 230)',
-      },
+        primary: '#2563eb',       // bg-blue-600 / text-blue-600
+        accent: '#10b981',        // bg-emerald-500
+        secondary: '#7c3aed',     // bg-purple-600
+        darkGray: '#1f2937',      // bg-gray-800 / text-gray-800
+        lightGray: '#f3f4f6',     // bg-gray-100 / text-gray-100
+        neutralWhite: '#ffffff',  // bg-white / text-white
+        alertRed: '#ef4444',      // bg-red-500
+        chartYellow: '#f59e0b',  // bg-yellow-500
+        },
     },
   },
   plugins: [

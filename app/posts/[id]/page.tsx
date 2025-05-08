@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 
 interface Comment {
   id: number;
@@ -19,6 +19,7 @@ interface Post {
 export default function PostDetailsPage() {
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
+  const router = useRouter();
 
   const [post, setPost] = useState<Post | null>(null);
   const [comments, setComments] = useState<Comment[]>([]);
@@ -70,8 +71,17 @@ export default function PostDetailsPage() {
 
   return (
     <div className="p-6 max-w-4xl mx-auto space-y-8">
-      <h1 className="text-4xl font-bold">{post?.title}</h1>
-      <p className="text-gray-700 text-lg">{post?.body}</p>
+      <button
+        onClick={() => router.back()}
+        className="mb-4 px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark transition"
+        aria-label="Go back"
+      >
+        &larr; Back
+      </button>
+      <div className="bg-white rounded-lg shadow-md border border-gray-300 p-8">
+        <h1 className="text-4xl font-bold mb-4">{post?.title}</h1>
+        <p className="text-gray-700 text-lg">{post?.body}</p>
+      </div>
 
       <div>
         <h2 className="text-3xl font-semibold mb-6 border-b border-gray-300 pb-2">Comments</h2>
