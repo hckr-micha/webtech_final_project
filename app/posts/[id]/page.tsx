@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
 
 interface Comment {
   id: number;
@@ -16,10 +16,15 @@ interface Post {
   body: string;
 }
 
-export default function PostDetailsPage() {
-  const searchParams = useSearchParams();
-  const id = searchParams.get("id");
-  const router = useRouter();
+interface PostDetailPageProps {
+  params: {
+    id: string;
+  };
+}
+
+export default function PostDetailPage({ params }: PostDetailPageProps) {
+  const unwrappedParams = React.use(params);
+  const id = unwrappedParams.id;
 
   const [post, setPost] = useState<Post | null>(null);
   const [comments, setComments] = useState<Comment[]>([]);
@@ -63,46 +68,42 @@ export default function PostDetailsPage() {
 
   if (loadingPost) return (
     <div className="flex justify-center items-center h-64">
-      <div className="animate-spin inline-block w-10 h-10 border-4 rounded-full border-blue-500 border-t-transparent"></div>
-      <span className="ml-3 text-lg font-medium">Loading post...</span>
+      <div className="animate-spin inline-block w-10 h-10 border-4 rounded-full border-primary border-t-transparent"></div>
+      <span className="ml-3 text-lg font-medium text-accent">Loading post...</span>
     </div>
   );
-  if (errorPost) return <div className="text-red-600 text-center mt-6">Error loading post: {errorPost}</div>;
+
+  if (errorPost) return <div className="text-alertRed text-center mt-6">{errorPost}</div>;
 
   return (
-    <div className="p-6 max-w-4xl mx-auto space-y-8">
-      <button
-        onClick={() => router.back()}
-        className="mb-4 px-4 py-2 bg-primary text-white rounded hover:bg-primary-dark transition"
-        aria-label="Go back"
-      >
-        &larr; Back
-      </button>
-      <div className="bg-white rounded-lg shadow-md border border-gray-300 p-8">
-        <h1 className="text-4xl font-bold mb-4">{post?.title}</h1>
-        <p className="text-gray-700 text-lg">{post?.body}</p>
-      </div>
+    <main className="min-h-screen bg-neutralWhite py-16 px-12 lg:px-24">
+      <div className="max-w-7xl mx-auto space-y-16">
+        <article className="bg-primary p-10 rounded-2xl shadow-md">
+          <h1 className="text-4xl font-bold text-accent mb-6">{post?.title}</h1>
+          <p className="text-secondary text-lg">{post?.body}</p>
+        </article>
 
-      <div>
-        <h2 className="text-3xl font-semibold mb-6 border-b border-gray-300 pb-2">Comments</h2>
-        {loadingComments ? (
-          <div className="flex justify-center items-center h-40">
-            <div className="animate-spin inline-block w-10 h-10 border-4 rounded-full border-green-500 border-t-transparent"></div>
-            <span className="ml-3 text-lg font-medium">Loading comments...</span>
-          </div>
-        ) : errorComments ? (
-          <div className="text-red-600 text-center mt-6">Error loading comments: {errorComments}</div>
-        ) : (
-          <ul className="space-y-6">
-            {comments.map((comment) => (
-              <li key={comment.id} className="p-6 border rounded-lg shadow hover:shadow-lg transition">
-                <p className="font-semibold text-lg">{comment.name} <span className="text-gray-500 text-sm">({comment.email})</span></p>
-                <p className="text-gray-700 mt-2">{comment.body}</p>
-              </li>
-            ))}
-          </ul>
-        )}
+        <section>
+          <h2 className="text-3xl font-bold text-accent mb-8">Comments</h2>
+          {loadingComments ? (
+            <div className="flex justify-center items-center h-40 bg-neutralWhite rounded-3xl shadow-lg">
+              <div className="animate-spin inline-block w-10 h-10 border-4 rounded-full border-primary border-t-transparent"></div>
+              <span className="ml-3 text-lg font-medium text-accent">Loading comments...</span>
+            </div>
+          ) : errorComments ? (
+            <div className="text-alertRed text-center mt-6">{errorComments}</div>
+          ) : (
+            <ul className="space-y-6">
+              {comments.map((comment) => (
+                <li key={comment.id} className="p-6 bg-neutralWhite rounded-3xl shadow-md border border-secondary">
+                  <p className="font-semibold text-lg text-accent">{comment.name} <span className="text-sm text-secondary">({comment.email})</span></p>
+                  <p className="text-secondary mt-2">{comment.body}</p>
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
       </div>
-    </div>
+    </main>
   );
 }

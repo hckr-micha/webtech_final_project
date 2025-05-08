@@ -84,7 +84,7 @@ export default function UserProfilePage({ params }: UserProfilePageProps) {
   if (loadingUser) return (
     <div className="flex justify-center items-center h-64">
       <div className="animate-spin inline-block w-10 h-10 border-4 rounded-full border-primary border-t-transparent"></div>
-      <span className="ml-3 text-lg font-medium text-primary">Loading user...</span>
+      <span className="ml-3 text-lg font-medium text-accent">Loading user...</span>
     </div>
   );
   if (errorUser) return <div className="text-alertRed text-center mt-6">{errorUser}</div>;
@@ -95,14 +95,14 @@ export default function UserProfilePage({ params }: UserProfilePageProps) {
         {/* User Info and Map in two columns */}
         <section className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
           {/* User Info */}
-          <div className="col-span-1 bg-lightGray p-20 rounded-2xl shadow-md flex flex-col justify-between h-full">
+          <div className="col-span-1 bg-primary p-20 rounded-2xl shadow-md flex flex-col justify-between h-full">
             <div>
-              <h1 className="text-4xl font-bold text-primary mb-4">{user?.name}</h1>
-              <span className="inline-block bg-accent text-neutralWhite text-sm font-semibold px-4 py-2 rounded-full mb-8">{user?.username}</span>
-              <div className="text-darkGray space-y-6 text-base">
-                <p><strong>Email:</strong> <a href={`mailto:${user?.email}`} className="text-secondary hover:underline">{user?.email}</a></p>
+              <h1 className="text-4xl font-bold text-accent mb-4">{user?.name}</h1>
+              <span className="inline-block bg-secondary text-neutralWhite text-sm font-semibold px-4 py-2 rounded-full mb-8">{user?.username}</span>
+              <div className="text-secondary space-y-6 text-base">
+                <p><strong>Email:</strong> <a href={`mailto:${user?.email}`} className="text-highlight hover:underline">{user?.email}</a></p>
                 <p><strong>Phone:</strong> {user?.phone}</p>
-                <p><strong>Website:</strong> <a href={`http://${user?.website}`} target="_blank" rel="noopener noreferrer" className="text-secondary hover:underline">{user?.website}</a></p>
+                <p><strong>Website:</strong> <a href={`http://${user?.website}`} target="_blank" rel="noopener noreferrer" className="text-highlight hover:underline">{user?.website}</a></p>
                 <p><strong>Address:</strong> {user?.address.street}, {user?.address.suite}, {user?.address.city}, {user?.address.zipcode}</p>
               </div>
             </div>
@@ -112,7 +112,7 @@ export default function UserProfilePage({ params }: UserProfilePageProps) {
           </div>
 
           {/* Map */}
-          <div className="col-span-2 bg-lightGray p-10 rounded-2xl shadow-md">
+          <div className="col-span-2 bg-primary p-10 rounded-2xl shadow-md">
             {user?.address.geo.lat && user?.address.geo.lng ? (
               <UserMap lat={parseFloat(user.address.geo.lat)} lng={parseFloat(user.address.geo.lng)} />
             ) : (
@@ -123,22 +123,25 @@ export default function UserProfilePage({ params }: UserProfilePageProps) {
 
         {/* Posts */}
         <section>
-          <h2 className="text-3xl font-bold text-primary mb-8">Posts</h2>
+          <h2 className="text-3xl font-bold text-accent mb-8">Posts</h2>
           {loadingPosts ? (
             <div className="flex justify-center items-center h-40 bg-neutralWhite rounded-3xl shadow-lg">
               <div className="animate-spin inline-block w-10 h-10 border-4 rounded-full border-primary border-t-transparent"></div>
-              <span className="ml-3 text-lg font-medium text-primary">Loading posts...</span>
+              <span className="ml-3 text-lg font-medium text-accent">Loading posts...</span>
             </div>
           ) : errorPosts ? (
             <div className="text-alertRed text-center mt-6">{errorPosts}</div>
           ) : (
             <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {posts.map((post) => (
-                <li key={post.id} className="p-6 bg-neutralWhite rounded-3xl shadow-md hover:shadow-lg transition-shadow duration-300 border border-secondary">
-                  <Link href={`/posts/${post.id}`} className="text-primary hover:underline font-semibold text-lg">
+                <li
+                  key={post.id}
+                  className="p-6 bg-neutralWhite rounded-3xl shadow-md hover:shadow-lg transition-shadow duration-300 border border-secondary cursor-pointer transform transition duration-300 hover:scale-105 hover:bg-accent hover:text-neutralWhite active:bg-secondary active:text-neutralWhite"
+                >
+                  <Link href={`/posts/${post.id}`} className="text-accent hover:underline font-semibold text-lg">
                     {post.title}
                   </Link>
-                  <p className="text-darkGray text-base mt-2">{post.body}</p>
+                  <p className="text-secondary text-base mt-2">{post.body}</p>
                 </li>
               ))}
             </ul>

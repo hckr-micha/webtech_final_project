@@ -34,22 +34,25 @@ export default function PostsPage() {
 
   if (loading) return (
     <div className="flex justify-center items-center h-64">
-      <div className="animate-spin inline-block w-10 h-10 border-4 rounded-full border-blue-500 border-t-transparent"></div>
-      <span className="ml-3 text-lg font-medium">Loading posts...</span>
+      <div className="animate-spin inline-block w-10 h-10 border-4 rounded-full border-primary border-t-transparent"></div>
+      <span className="ml-3 text-lg font-medium text-accent">Loading posts...</span>
     </div>
   );
-  if (error) return <div className="text-red-600 text-center mt-6">Error loading posts: {error}</div>;
+  if (error) return <div className="text-alertRed text-center mt-6">Error loading posts: {error}</div>;
 
   return (
-    <div className="p-6 max-w-4xl mx-auto">
-      <h1 className="text-3xl font-bold mb-6 border-b border-gray-300 pb-2">Posts List</h1>
-      <ul className="space-y-4">
+    <div className="p-6 mx-auto bg-neutralWhite rounded-lg shadow-lg">
+      <h1 className="text-3xl font-bold mb-6 border-b border-secondary pb-2 text-secondary">Posts List</h1>
+      <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         {posts?.map((post) => (
-          <li key={post.id} className="p-5 border rounded-lg shadow-sm hover:shadow-md transition cursor-pointer">
-            <Link href={`/posts/${post.id}`} className="block font-semibold text-xl text-blue-700 hover:underline">
+          <li
+            key={post.id}
+            className="p-5 border border-secondary rounded-xl shadow-md bg-primary cursor-pointer transform transition duration-300 hover:scale-105 hover:shadow-xl hover:bg-accent hover:text-neutralWhite active:bg-secondary active:text-neutralWhite"
+          >
+            <Link href={`/posts/${post.id}`} className="block font-semibold text-xl hover:underline text-neutralWhite">
               {post.title}
             </Link>
-            <p className="mt-2 text-gray-700">{post.body}</p>
+            <p className="mt-2 text-accent">{post.body}</p>
           </li>
         ))}
       </ul>

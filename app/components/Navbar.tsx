@@ -16,9 +16,9 @@ const navItems: NavItem[] = [
 
 export default function Navbar() {
   return (
-    <nav className="shadow-md bg-lightGray">
+    <nav className="shadow-md bg-primary">
       <div className="max-w-7xl mx-auto px-10 py-6 flex items-center justify-between">
-        <div className="text-5xl font-extrabold text-primary">
+        <div className="text-5xl font-extrabold text-accent">
           <Link href="/">
             <span className="pr-6 cursor-pointer transition-transform duration-300 hover:scale-110">
               CHIKA

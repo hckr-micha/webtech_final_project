@@ -1,0 +1,39 @@
+.color-primary {
+  color: #00171f;
+}
+
+.bg-primary {
+  background-color: #00171f;
+}
+
+.color-secondary {
+  color: #003459;
+}
+
+.bg-secondary {
+  background-color: #003459;
+}
+
+.color-accent {
+  color: #007ea7;
+}
+
+.bg-accent {
+  background-color: #007ea7;
+}
+
+.color-highlight {
+  color: #00a8e8;
+}
+
+.bg-highlight {
+  background-color: #00a8e8;
+}
+
+.color-neutralWhite {
+  color: #ffffff;
+}
+
+.bg-neutralWhite {
+  background-color: #ffffff;
+}
