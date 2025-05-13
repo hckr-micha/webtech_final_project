@@ -1,20 +1,56 @@
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  color: black;
-  background-color: white;
+:root {
+  --color-primary: #00171f;
+  --color-secondary: #003459;
+  --color-accent: #007ea7;
+  --color-highlight: #00a8e8;
+  --color-neutralWhite: #ffffff;
+  --color-paleBlue: #c7dbe6;
+  --color-light: #4b77b1;
+  --color-cooment: rgb(23, 73, 119);
+  --color--black: black;
 }
 
-/* Global styles for h1 */
-h1 {
-  margin-top: 2rem;
-  margin-bottom: 1.25rem;
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
-  font-size: 2.5rem;
-  line-height: 1.2;
-  letter-spacing: 0.05em;
-  font-weight: 700;
-  color: black;
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--color-primary);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+span {
+  color: var(--color-highlight);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-neutralWhite);
+}
+
+a {
+  color: var(--color-neutralWhite);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-highlight);
+  text-decoration: underline;
+}
+
+/* Smooth transition for sidebar */
+aside {
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Hide scrollbar for sidebar overlay */
+div[role="presentation"]::-webkit-scrollbar {
+  display: none;
+}
+
+div[role="presentation"] {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+p{
+  color: aquamarine;
 }

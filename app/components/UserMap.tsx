@@ -13,7 +13,7 @@ export default function UserMap({ lat, lng }: UserMapProps) {
   return (
     <div
       ref={mapContainerRef}
-      className="w-full h-64 rounded border transition-transform duration-300 hover:scale-105 hover:shadow-lg"
+      className="w-full h-64 rounded border border-secondary transition-transform duration-300 hover:scale-105 hover:shadow-lg hover:shadow-accent"
     >
       <iframe
         title="User Location"

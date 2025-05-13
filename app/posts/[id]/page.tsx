@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, use } from "react";
 import Link from "next/link";
 
 interface Comment {
@@ -17,14 +17,14 @@ interface Post {
 }
 
 interface PostDetailPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
-export default function PostDetailPage({ params }: PostDetailPageProps) {
-  const unwrappedParams = React.use(params);
-  const id = unwrappedParams.id;
+export default function PostDetailPage(props: PostDetailPageProps) {
+  const params = use(props.params);
+  const id = params.id;
 
   const [post, setPost] = useState<Post | null>(null);
   const [comments, setComments] = useState<Comment[]>([]);
@@ -84,7 +84,7 @@ export default function PostDetailPage({ params }: PostDetailPageProps) {
         </article>
 
         <section>
-          <h2 className="text-3xl font-bold text-accent mb-8">Comments</h2>
+          <h2 className="text-3xl font-bold text-accent mb-8 mt-6">Comments</h2>
           {loadingComments ? (
             <div className="flex justify-center items-center h-40 bg-neutralWhite rounded-3xl shadow-lg">
               <div className="animate-spin inline-block w-10 h-10 border-4 rounded-full border-primary border-t-transparent"></div>
@@ -95,7 +95,7 @@ export default function PostDetailPage({ params }: PostDetailPageProps) {
           ) : (
             <ul className="space-y-6">
               {comments.map((comment) => (
-                <li key={comment.id} className="p-6 bg-neutralWhite rounded-3xl shadow-md border border-secondary">
+                <li key={comment.id} className="p-6 bg-neutralWhite rounded-3xl shadow-md border border-secondary" style={{ backgroundColor: "var(--color-cooment)" }}>
                   <p className="font-semibold text-lg text-accent">{comment.name} <span className="text-sm text-secondary">({comment.email})</span></p>
                   <p className="text-secondary mt-2">{comment.body}</p>
                 </li>

@@ -15,6 +15,7 @@ module.exports = {
         accent: { DEFAULT: '#007ea7' },        // medium blue
         highlight: { DEFAULT: '#00a8e8' },     // bright cyan
         neutralWhite: { DEFAULT: '#ffffff' },  // white
+        paleBlue: { DEFAULT: '#c7dbe6' },      // pale blue added for dashboard
       },
     },
   },

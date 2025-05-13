@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
+import Sidebar from "./components/Sidebar";
 
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
@@ -11,6 +12,7 @@ export default function Dashboard() {
   const [commentCount, setCommentCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     const fetchCounts = async () => {
@@ -82,11 +84,14 @@ export default function Dashboard() {
   if (error) return <div className="text-red-600 text-center mt-6">Error loading dashboard: {error}</div>;
 
   return (
-    <div className="p-6 max-w-5xl mx-auto space-y-8 bg-paleBlue rounded-lg shadow-lg">
-      <h1 className="text-5xl font-bold mb-8 text-center text-accent p-5">Dashboard</h1>
-      <div className="bg-white shadow-lg rounded-lg p-6">
-        <Chart options={chartOptions} series={chartSeries} type="bar" height={350} />
-      </div>
+    <div className="flex min-h-screen bg-paleBlue">
+      {/* Main content */}
+      <main className="flex-1 p-6 max-w-5xl mx-auto space-y-8 rounded-lg shadow-lg">
+        <h1 className="text-5xl font-bold mb-8 text-center text-accent p-5 text-neutralWhite">Dashboard</h1>
+        <div className="bg-white shadow-lg rounded-lg p-6">
+          <Chart options={chartOptions} series={chartSeries} type="bar" height={350} />
+        </div>
+      </main>
     </div>
   );
 }

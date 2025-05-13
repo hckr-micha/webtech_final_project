@@ -106,9 +106,6 @@ export default function UserProfilePage({ params }: UserProfilePageProps) {
                 <p><strong>Address:</strong> {user?.address.street}, {user?.address.suite}, {user?.address.city}, {user?.address.zipcode}</p>
               </div>
             </div>
-            <div className="mt-10 text-sm text-secondary font-medium">
-              <p>Additional Info or Footer Section</p>
-            </div>
           </div>
 
           {/* Map */}
@@ -123,7 +120,7 @@ export default function UserProfilePage({ params }: UserProfilePageProps) {
 
         {/* Posts */}
         <section>
-          <h2 className="text-3xl font-bold text-accent mb-8">Posts</h2>
+          <h2 className="text-3xl font-bold text-accent mb-8 mt-6">Posts</h2>
           {loadingPosts ? (
             <div className="flex justify-center items-center h-40 bg-neutralWhite rounded-3xl shadow-lg">
               <div className="animate-spin inline-block w-10 h-10 border-4 rounded-full border-primary border-t-transparent"></div>
@@ -136,7 +133,7 @@ export default function UserProfilePage({ params }: UserProfilePageProps) {
               {posts.map((post) => (
                 <li
                   key={post.id}
-                  className="p-6 bg-neutralWhite rounded-3xl shadow-md hover:shadow-lg transition-shadow duration-300 border border-secondary cursor-pointer transform transition duration-300 hover:scale-105 hover:bg-accent hover:text-neutralWhite active:bg-secondary active:text-neutralWhite"
+                  className="p-6 bg-neutralWhite rounded-3xl shadow-md hover:shadow-lg transition-shadow duration-300 border cursor-pointer transform transition duration-300 hover:scale-105 hover:bg-accent hover:text-neutralWhite active:bg-secondary active:text-neutralWhite" style={{ backgroundColor: "var(--color-light)" }}
                 >
                   <Link href={`/posts/${post.id}`} className="text-accent hover:underline font-semibold text-lg">
                     {post.title}
